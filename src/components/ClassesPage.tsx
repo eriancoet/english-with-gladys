@@ -1,5 +1,4 @@
 import { Video, Users, BookOpen, Award } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function ClassesPage() {
   return (
