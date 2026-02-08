@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
+import logo from "../assets/logo-nav.png";
+
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,9 +34,17 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="cursor-pointer">
-            <h1 className="text-blue-600">English with Gladys</h1>
-          </Link>
+        
+      <Link to="/" className="cursor-pointer flex items-center gap-2">
+        <img
+          src={logo}      
+          alt="English with Gladys"
+          className="h-9 w-auto"
+        />
+        <span className="font-semibold text-blue-600 hidden sm:inline">
+          English with Gladys
+        </span>
+      </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
