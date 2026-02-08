@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function HomePage() {
   return (
@@ -21,13 +22,19 @@ export function HomePage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                <Link
+                  to="/contact"
+                  className="inline-flex justify-center items-center bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer"
+                >
                   Book a Free Trial Class
-                </button>
+                </Link>
 
-                <button className="bg-white text-gray-900 px-8 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-medium">
+                <Link
+                  to="/pricing"
+                  className="inline-flex justify-center items-center bg-white text-gray-900 px-8 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-medium cursor-pointer"
+                >
                   View Pricing
-                </button>
+                </Link>
               </div>
 
               <div className="mt-6 flex items-center gap-2 text-sm text-gray-600">
@@ -136,9 +143,13 @@ export function HomePage() {
           <p className="text-lg sm:text-xl mb-8 text-blue-100">
             Book a free 30-minute trial class to see if my teaching style is right for you.
           </p>
-          <button className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+
+          <Link
+            to="/contact"
+            className="inline-flex justify-center items-center bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium cursor-pointer"
+          >
             Schedule Your Free Trial
-          </button>
+          </Link>
         </div>
       </section>
     </div>

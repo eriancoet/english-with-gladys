@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function PricingPage() {
   return (
@@ -46,9 +47,12 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <button className="w-full bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors">
+              <Link
+                to="/contact"
+                className="inline-flex w-full justify-center items-center bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+              >
                 Book Trial
-              </button>
+              </Link>
             </div>
 
             {/* Individual Lessons */}
@@ -91,9 +95,12 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <Link
+                to="/contact"
+                className="inline-flex w-full justify-center items-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+              >
                 Get Started
-              </button>
+              </Link>
             </div>
 
             {/* Package Deal */}
@@ -133,9 +140,12 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <button className="w-full bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors">
+              <Link
+                to="/contact"
+                className="inline-flex w-full justify-center items-center bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+              >
                 Buy Package
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -169,6 +179,15 @@ export function PricingPage() {
                     Scheduled weekly sessions
                   </li>
                 </ul>
+
+                <div className="mt-6">
+                  <Link
+                    to="/contact"
+                    className="inline-flex w-full justify-center items-center bg-white text-gray-900 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-medium cursor-pointer"
+                  >
+                    Ask About Group Classes
+                  </Link>
+                </div>
               </div>
 
               <div className="bg-white rounded-lg p-6">
@@ -196,6 +215,15 @@ export function PricingPage() {
                     Score improvement guarantee
                   </li>
                 </ul>
+
+                <div className="mt-6">
+                  <Link
+                    to="/contact"
+                    className="inline-flex w-full justify-center items-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer"
+                  >
+                    Start Exam Prep
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -210,8 +238,21 @@ export function PricingPage() {
               Cancellation policy: Please provide at least 24 hours notice to reschedule or receive a refund.
             </p>
             <p className="text-gray-600">
-              Have questions about which package is right for you? Get in touch and I&apos;ll help you choose!
+              Have questions about which package is right for you?{" "}
+              <Link to="/contact" className="text-blue-600 hover:underline cursor-pointer">
+                Get in touch
+              </Link>{" "}
+              and I&apos;ll help you choose!
             </p>
+
+            <div className="mt-8">
+              <Link
+                to="/contact"
+                className="inline-flex justify-center items-center bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer"
+              >
+                Contact Me
+              </Link>
+            </div>
           </div>
         </div>
       </section>
