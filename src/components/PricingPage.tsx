@@ -1,7 +1,15 @@
 import { Check } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+type Plan = "free" | "35" | "300" | "group20" | "exam40";
 
 export function PricingPage() {
+  const navigate = useNavigate();
+
+  const goToCheckout = (plan: Plan) => {
+    navigate(`/checkout?plan=${plan}`);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -47,12 +55,12 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <Link
-                to="/contact"
+              <button
+                onClick={() => goToCheckout("free")}
                 className="inline-flex w-full justify-center items-center bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
               >
                 Book Trial
-              </Link>
+              </button>
             </div>
 
             {/* Individual Lessons */}
@@ -95,26 +103,33 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <Link
-                to="/contact"
+              <button
+                onClick={() => goToCheckout("35")}
                 className="inline-flex w-full justify-center items-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
               >
                 Get Started
-              </Link>
+              </button>
             </div>
 
             {/* Package Deal */}
             <div className="bg-white border-2 border-gray-200 rounded-lg p-8 hover:border-blue-300 transition-colors">
               <div className="text-center mb-6">
                 <h3 className="mb-2">10-Lesson Package</h3>
+
                 <div className="mb-2">
-                  <span className="text-4xl">$30</span>
-                  <span className="text-gray-600">/hour</span>
+                  <span className="text-4xl">$300</span>
+                  <span className="text-gray-600"> total</span>
                 </div>
+
+                <div className="mb-2">
+                  <span className="text-sm text-gray-600">$30/hour</span>
+                </div>
+
                 <div className="mb-4">
                   <span className="text-sm text-green-600">Save $50!</span>
                 </div>
-                <p className="text-gray-600">Best value - $300 total</p>
+
+                <p className="text-gray-600">Best value - 10 x 60-minute lessons</p>
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -140,12 +155,12 @@ export function PricingPage() {
                 </li>
               </ul>
 
-              <Link
-                to="/contact"
+              <button
+                onClick={() => goToCheckout("300")}
                 className="inline-flex w-full justify-center items-center bg-gray-100 text-gray-900 py-3 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
               >
                 Buy Package
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -154,6 +169,7 @@ export function PricingPage() {
             <h2 className="text-center mb-8">Additional Options</h2>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Group Classes */}
               <div className="bg-white rounded-lg p-6">
                 <h3 className="mb-3">Group Classes</h3>
                 <div className="mb-4">
@@ -181,15 +197,16 @@ export function PricingPage() {
                 </ul>
 
                 <div className="mt-6">
-                  <Link
-                    to="/contact"
+                  <button
+                    onClick={() => goToCheckout("group20")}
                     className="inline-flex w-full justify-center items-center bg-white text-gray-900 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors font-medium cursor-pointer"
                   >
-                    Ask About Group Classes
-                  </Link>
+                    Book Group Class
+                  </button>
                 </div>
               </div>
 
+              {/* Exam Preparation */}
               <div className="bg-white rounded-lg p-6">
                 <h3 className="mb-3">Exam Preparation</h3>
                 <div className="mb-4">
@@ -217,12 +234,12 @@ export function PricingPage() {
                 </ul>
 
                 <div className="mt-6">
-                  <Link
-                    to="/contact"
+                  <button
+                    onClick={() => goToCheckout("exam40")}
                     className="inline-flex w-full justify-center items-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium cursor-pointer"
                   >
                     Start Exam Prep
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>

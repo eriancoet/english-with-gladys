@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
-
+import  ThankYouFreePage  from "./pages/ThankYouFreePage";
 import { Navigation } from "./components/Navigation";
 import { HomePage } from "./components/HomePage";
 import { AboutPage } from "./components/AboutPage";
 import { ClassesPage } from "./components/ClassesPage";
 import { PricingPage } from "./components/PricingPage";
 import { ContactPage } from "./components/ContactPage";
+import { CheckoutPage } from "./pages/CheckoutPage";
 
 export default function App() {
   const location = useLocation();
@@ -28,6 +29,9 @@ export default function App() {
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/thank-you-free" element={<ThankYouFreePage />} />
+
         </Routes>
       </main>
 
