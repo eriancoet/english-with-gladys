@@ -9,14 +9,37 @@ export function ContactPage() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock form submission
-    alert("Thank you for your message! I'll get back to you within 24 hours.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setStatus("sending");
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...formData,
+        }),
+      });
+
+      setStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -42,7 +65,33 @@ export function ContactPage() {
             {/* Contact Form */}
             <div>
               <h2 className="mb-6">Send Me a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* Status messages */}
+              {status === "success" && (
+                <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 text-green-800">
+                  Thanks! Your message was sent. I’ll get back to you within 24 hours.
+                </div>
+              )}
+              {status === "error" && (
+                <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">
+                  Oops! Something went wrong. Please try again.
+                </div>
+              )}
+
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* Netlify required hidden field */}
+                <input type="hidden" name="form-name" value="contact" />
+
+                {/* Honeypot field (spam protection) */}
+                <input type="hidden" name="bot-field" />
+
                 <div>
                   <label htmlFor="name" className="block text-gray-700 mb-2">
                     Your Name *
@@ -109,16 +158,21 @@ export function ContactPage() {
                     rows={6}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                     placeholder="Tell me about your English learning goals..."
-                  ></textarea>
+                  />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  disabled={status === "sending"}
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {status === "sending" ? "Sending..." : "Send Message"}
                 </button>
               </form>
+
+              <p className="mt-4 text-sm text-gray-500">
+                Tip: After you deploy, check Netlify → <strong>Forms</strong> to see submissions.
+              </p>
             </div>
 
             {/* Contact Information */}
