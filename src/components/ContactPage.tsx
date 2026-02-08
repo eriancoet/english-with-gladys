@@ -170,9 +170,7 @@ export function ContactPage() {
                 </button>
               </form>
 
-              <p className="mt-4 text-sm text-gray-500">
-                Tip: After you deploy, check Netlify → <strong>Forms</strong> to see submissions.
-              </p>
+              
             </div>
 
             {/* Contact Information */}

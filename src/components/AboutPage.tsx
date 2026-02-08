@@ -1,4 +1,5 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import gladysImg from "../assets/gladys.jpg"; // adjust path if needed
 
 export function AboutPage() {
   return (
@@ -19,7 +20,7 @@ export function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800"
+                src={gladysImg}
                 alt="Gladys Nontobeko Mashego - English Teacher"
                 className="rounded-lg shadow-lg w-full"
               />
